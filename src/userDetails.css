@@ -1,0 +1,101 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+body {
+  background-color: #eeeeee;
+  padding: 20px;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.upperContainer {
+  background-color: #f6f6f6;
+  padding: 30px 60px;
+  height: 30%;
+}
+
+.lowerContainer {
+  padding: 50px 80px;
+  height: 70%;
+  background-color: #ffffff;
+}
+
+.backIcon {
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.heading {
+  font-size: 1rem;
+  margin-left: 10px;
+  color: rgb(87, 83, 83);
+}
+
+.imageContainer {
+  display: flex;
+  flex-direction: row;
+  margin: 50px 20px 30px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  border: 3px solid black;
+}
+
+.userName {
+  margin-left: 20px;
+  color: #363536;
+}
+
+.userHandler {
+  color: #797676;
+  margin-left: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: grey;
+}
+
+.info {
+  font-size: 1.2rem;
+}
+
+.repoAndFollow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.repo {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+  padding: 10px;
+  border: solid 1px lightgray;
+  margin: 20px 0px;
+  box-shadow: 5px 5px 8px #888888;
+  background-color: #fefefe;
+}
+
+.repoInfo{
+  margin-left: 20px;
+}
