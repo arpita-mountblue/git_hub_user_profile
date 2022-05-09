@@ -1,6 +1,22 @@
-let app = angular.module("gitHubApp", []);
+let app = angular.module("gitHubApp", ["ngRoute"]);
 
-app.controller("allUser", function ($scope, $http, $window) {
+app.config([
+  "$routeProvider",
+  function config($routeProvider) {
+    $routeProvider
+      .when("/users", {
+        templateUrl: "./users.html",
+        controller: "allUser",
+      })
+      .when("/users/:userid", {
+        templateUrl: "./userDetails.html",
+        controller: "userData",
+      })
+      .otherwise("/users");
+  },
+]);
+
+app.controller("allUser", function ($scope, $http) {
   const URL = "https://api.github.com/users";
   //making a request to the api
 
@@ -10,16 +26,14 @@ app.controller("allUser", function ($scope, $http, $window) {
     $scope.users = response.data;
   });
   // goto usedetails page
-  $scope.userDetails = function () {
-
-    $window.location.href = "./userDetails.html";
-  
-
-  };
+  // $scope.userDetails = function () {
+  //   $window.location.href = "./userDetails.html";
+  // };
 });
 
-app.controller("userData", function ($scope, $http, $window) {
-  const URL = "https://api.github.com/users/mojombo";
+app.controller("userData", function ($scope, $http, $routeParams) {
+  const URL = `https://api.github.com/users/${$routeParams.userid}`;
+  // console.log(URL, $routeParams);
 
   //making a request to the api
 
@@ -31,7 +45,7 @@ app.controller("userData", function ($scope, $http, $window) {
   });
 
   //back to homepage
-  $scope.backHome = function () {
-    $window.location.href = "./users.html";
-  };
+  // $scope.backHome = function () {
+  //   $window.location.href = "./users.html";
+  // };
 });

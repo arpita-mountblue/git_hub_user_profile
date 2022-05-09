@@ -1,70 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="userDetails.css" />
-    <title>GitHub User</title>
-  </head>
-  <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script> -->
-    <script src="app.js"></script>
-    <div ng-app="gitHubApp">
-      <div ng-controller="userData">
-        <section class="userContainer">
-          <div class="upperContainer">
-            <div class="backIcon" ng-click = "backHome()">
-              <img ng-src="../Images/backArrowIcon.png" width="30" height="20" />
-              <span class="heading">Back</span>
-            </div>
-            <div class="imageContainer">
-              <div class="image">
-                <img ng-src="{{user.avatar_url}}" height="100" width="100" />
-              </div>
-              <div>
-                <h1 class="userName">{{user.name}}</h1>
-                <h4 class="userHandler">@{{user.login}}</h4>
-              </div>
-            </div>
-          </div>
-          <div class="lowerContainer">
-            <div class="infoContainer">
-              <span class="title">Bio</span>
-              <span class="info"
-                >{{user.bio?user.bio:"Bio not available"}}</span
-              >
-            </div>
-            <div class="infoContainer">
-              <span class="title">Works at</span>
-              <span class="info">{{user.company}}</span>
-            </div>
-            <div class="repoAndFollow">
-              <div class="infoContainer">
-                <span class="title">Repositories</span>
-                <span class="info">{{user.public_repos}}</span>
-              </div>
-              <div class="infoContainer">
-                <span class="title">Followers</span>
-                <span class="info">{{user.followers}}</span>
-              </div>
-            </div>
-            <div class="infoContainer">
-              <span class="title">Pinned Repositories</span>
-              <div ng-repeat="repo in userRepo " class="repoContainer">
-                <div class="repo">
-                  <img src="../Images/profileIcon.png" width="90" height="90" />
-                  <div class="repoInfo">
-                    <h2>{{repo.full_name}}</h2>
-                    <span class="info">{{repo.description}}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+<div ng-controller="userData">
+  <section class="userContainer">
+    <div class="upperContainer">
+      <a href="#/!/users/:userid" style="text-decoration: none">
+        <div class="backIcon">
+          <img ng-src="../Images/backArrowIcon.png" width="30" height="20" />
+
+          <span class="heading">Back</span>
+        </div>
+      </a>
+      <div class="imageContainer">
+        <div class="image">
+          <img ng-src="{{user.avatar_url}}" height="100" width="100" />
+        </div>
+        <div>
+          <h1 class="userName">{{user.name}}</h1>
+          <h4 class="userHandler">@{{user.login}}</h4>
+        </div>
       </div>
     </div>
-  </body>
-</html>
+    <div class="lowerContainer">
+      <div class="infoContainer">
+        <span class="title">Bio</span>
+        <span class="info">{{user.bio?user.bio:"Bio not available"}}</span>
+      </div>
+      <div class="infoContainer">
+        <span class="title">Works at</span>
+        <span class="info">{{user.company}}</span>
+      </div>
+      <div class="repoAndFollow">
+        <div class="infoContainer">
+          <span class="title">Repositories</span>
+          <span class="info">{{user.public_repos}}</span>
+        </div>
+        <div class="infoContainer">
+          <span class="title">Followers</span>
+          <span class="info">{{user.followers}}</span>
+        </div>
+      </div>
+      <div class="infoContainer">
+        <span class="title">Pinned Repositories</span>
+        <div ng-repeat="repo in userRepo " class="repoContainer">
+          <div class="repo">
+            <img src="../Images/profileIcon.png" width="90" height="90" />
+            <div class="repoInfo">
+              <h2>{{repo.full_name}}</h2>
+              <span class="info">{{repo.description}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

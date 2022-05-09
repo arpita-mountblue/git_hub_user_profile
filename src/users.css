@@ -24,7 +24,7 @@ body {
   padding-left: 50px;
 }
 
-.heading {
+.mainHeading {
   margin-left: 10px;
 }
 
@@ -32,7 +32,7 @@ input {
   padding: 5px;
 }
 
-.userContainer {
+.allUserContainer {
   padding: 20px;
   background-color: white;
   display: flex;
@@ -41,11 +41,11 @@ input {
   justify-content: space-around;
 }
 
-.userDetails:hover {
+.usersDetailContainer:hover {
   transform: scale(1.025);
 }
 
-.userDetails {
+.usersDetailContainer {
   width: 40%;
   display: flex;
   flex-direction: row;
@@ -55,7 +55,15 @@ input {
   box-shadow: 5px 5px 8px #888888;
   cursor: pointer;
   margin: 20px;
-  /* border-radius: ; */
+}
+
+.hrefDiv {
+  width: 100%;
+  text-decoration: none;
+}
+.usersDetail {
+  display: flex;
+  flex-direction: row;
 }
 
 .avatar {
