@@ -10,22 +10,23 @@
       <input
         type="text"
         placeholder="Search user..."
-        ng-model="searchText.user"
+        ng-model="searchText"
+        ng-change="searchUser(searchText) "
       />
       <br /><br />
     </div>
 
     <div class="allUserContainer">
-      <div
-        ng-repeat="user in users | filter: searchText.user"
-        class="usersDetailContainer"
-      >
+      <div ng-repeat="user in users " class="usersDetailContainer">
         <a href="#!/users/{{user.login}}" class="hrefDiv">
           <div class="usersDetail">
             <img ng-src="{{user.avatar_url}}" class="avatar" />
             <h3>{{user.login}}</h3>
           </div>
         </a>
+      </div>
+      <div ng-if="users.length===0">
+        <img class="resultNotFound" src="../Images/no-result-found.webp" />
       </div>
     </div>
   </div>

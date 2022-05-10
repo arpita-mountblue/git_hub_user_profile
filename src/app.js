@@ -17,23 +17,48 @@ app.config([
 ]);
 
 app.controller("allUser", function ($scope, $http) {
-  const URL = "https://api.github.com/users";
+  let URL = "https://api.github.com/users";
   //making a request to the api
 
-  $http.get(URL).then((response) => {
-    console.log(response);
+  $http
+    .get(URL)
+    .then((response) => {
+      $scope.users = response.data;
+    })
+    .catch((e) => {
+      console.log(e);
+      $scope.users = [];
+    });
 
-    $scope.users = response.data;
-  });
-  // goto usedetails page
-  // $scope.userDetails = function () {
-  //   $window.location.href = "./userDetails.html";
-  // };
+  $scope.searchUser = (searchText) => {
+    if (searchText.length > 3) {
+      URL = `https://api.github.com/users/${searchText}`;
+      $http
+        .get(URL)
+        .then((response) => {
+          $scope.users = [response.data];
+        })
+        .catch((e) => {
+          console.log(e);
+          $scope.users = [];
+        });
+    } else if (searchText === "") {
+      URL = "https://api.github.com/users";
+      $http
+        .get(URL)
+        .then((response) => {
+          $scope.users = response.data;
+        })
+        .catch((e) => {
+          console.log(e);
+          $scope.users = [];
+        });
+    }
+  };
 });
 
 app.controller("userData", function ($scope, $http, $routeParams) {
   const URL = `https://api.github.com/users/${$routeParams.userid}`;
-  // console.log(URL, $routeParams);
 
   //making a request to the api
 
@@ -43,9 +68,4 @@ app.controller("userData", function ($scope, $http, $routeParams) {
       $scope.userRepo = response.data;
     });
   });
-
-  //back to homepage
-  // $scope.backHome = function () {
-  //   $window.location.href = "./users.html";
-  // };
 });

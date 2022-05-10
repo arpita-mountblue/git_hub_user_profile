@@ -76,3 +76,8 @@ input {
 h3 {
   padding: 10px;
 }
+
+.resultNotFound {
+  width: 700px;
+  height: 500px;
+}
