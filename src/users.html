@@ -16,18 +16,25 @@
       <br /><br />
     </div>
 
-    <div class="allUserContainer">
-      <div ng-repeat="user in users " class="usersDetailContainer">
-        <a href="#!/users/{{user.login}}" class="hrefDiv">
-          <div class="usersDetail">
-            <img ng-src="{{user.avatar_url}}" class="avatar" />
-            <h3>{{user.login}}</h3>
-          </div>
-        </a>
-      </div>
-      <div ng-if="users.length===0">
-        <img class="resultNotFound" src="../Images/no-result-found.webp" />
+    <div ng-if="loading === false">
+      <div
+        class="allUserContainer"
+        infinite-scroll="scrollFunction()"
+        infinite-scroll-distance="2"
+      >
+        <div ng-repeat="user in users " class="usersDetailContainer">
+          <a href="#!/users/{{user.login}}" class="hrefDiv">
+            <div class="usersDetail">
+              <img ng-src="{{user.avatar_url}}" class="avatar" />
+              <h3>{{user.login}}</h3>
+            </div>
+          </a>
+        </div>
+        <div ng-if="users.length===0">
+          <img class="resultNotFound" src="../Images/no-result-found.webp" />
+        </div>
       </div>
     </div>
+    <div ng-if="loading === true">Loading...</div>
   </div>
 </div>

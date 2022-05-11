@@ -1,4 +1,4 @@
-let app = angular.module("gitHubApp", ["ngRoute"]);
+let app = angular.module("gitHubApp", ["ngRoute", "infinite-scroll"]);
 
 app.config([
   "$routeProvider",
@@ -18,17 +18,31 @@ app.config([
 
 app.controller("allUser", function ($scope, $http) {
   let URL = "https://api.github.com/users";
-  //making a request to the api
+  let response = [];
+  let lastIndex = 10;
+
+  $scope.loading = true;
+  $scope.users = [];
 
   $http
     .get(URL)
-    .then((response) => {
-      $scope.users = response.data;
+    .then((res) => {
+      response = res.data;
+      $scope.users = response.slice(0, lastIndex);
+      $scope.loading = false;
     })
     .catch((e) => {
       console.log(e);
       $scope.users = [];
+      $scope.loading = false;
     });
+
+  $scope.scrollFunction = () => {
+    for (let i = 0; i < 2 && response.length > lastIndex; i++) {
+      $scope.users.push(response[lastIndex]);
+      lastIndex += 1;
+    }
+  };
 
   $scope.searchUser = (searchText) => {
     if (searchText.length > 3) {
