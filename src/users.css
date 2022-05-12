@@ -81,3 +81,11 @@ h3 {
   width: 700px;
   height: 500px;
 }
+
+.loadingImage {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  height: 50px;
+  width: 100px;
+}

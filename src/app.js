@@ -19,7 +19,7 @@ app.config([
 app.controller("allUser", function ($scope, $http) {
   let URL = "https://api.github.com/users";
   let response = [];
-  let lastIndex = 10;
+  let lastIndex = 7;
 
   $scope.loading = true;
   $scope.users = [];
