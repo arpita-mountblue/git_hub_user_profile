@@ -18,10 +18,17 @@ body {
   display: flex;
   flex-direction: row;
   padding: 50px;
+  margin-left: 40px;
 }
 
 .searchBar {
   padding-left: 50px;
+  margin-left: 40px;
+}
+.inputField {
+  padding: 15px;
+  border-radius: 50px;
+  width: 380px;
 }
 
 .mainHeading {
@@ -60,6 +67,7 @@ input {
 .hrefDiv {
   width: 100%;
   text-decoration: none;
+  color: rgb(12, 12, 44);
 }
 .usersDetail {
   display: flex;
@@ -82,10 +90,16 @@ h3 {
   height: 500px;
 }
 
-.loadingImage {
-  display: grid;
-  place-items: center;
-  text-align: center;
-  height: 50px;
-  width: 100px;
+.loading_container {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  display: flex;
+  flex-direction: row;
+}
+
+.loading_gif {
+  height: 40px;
+  width: 50px;
+  margin-right: 10px;
 }

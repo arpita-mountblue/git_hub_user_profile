@@ -6,13 +6,17 @@
       <br />
     </div>
     <div class="searchBar">
-      Search:
       <input
+        class="inputField"
         type="text"
         placeholder="Search user..."
         ng-model="searchText"
         ng-change="searchUser(searchText) "
       />
+      <i
+        class="fas fa-search"
+        style="position: relative; right: 50px; color: blueviolet"
+      ></i>
       <br /><br />
     </div>
 
@@ -35,8 +39,9 @@
         </div>
       </div>
     </div>
-    <div ng-if="loading === true" class="loadingImage">
-      <img src="../Images/loadingImage.jpg" />loading...
+    <div ng-if="loading === true" class="loading_container">
+      <img src="../Images/loading.gif" class="loading_gif" />
+      <h2>Loading...</h2>
     </div>
   </div>
 </div>
