@@ -17,55 +17,42 @@ app.config([
 ]);
 
 app.controller("allUser", function ($scope, $http) {
-  let URL = "https://api.github.com/users";
-  let response = [];
-  let lastIndex = 7;
-
-  $scope.loading = true;
+  $scope.page = 1;
   $scope.users = [];
+  $scope.searchString = "";
+  $scope.loading = false;
+  $scope.isDisabled = false;
 
-  $http
-    .get(URL)
-    .then((res) => {
-      response = res.data;
-      $scope.users = response.slice(0, lastIndex);
-      $scope.loading = false;
-    })
-    .catch((e) => {
-      console.log(e);
-      $scope.users = [];
-      $scope.loading = false;
-    });
+  $scope.scrollFunction = (pageNumber) => {
+    $scope.page = pageNumber;
+    $scope.isDisabled = true;
 
-  $scope.scrollFunction = () => {
-    for (let i = 0; i < 2 && response.length > lastIndex; i++) {
-      $scope.users.push(response[lastIndex]);
-      lastIndex += 1;
-    }
+    $scope.searchUser($scope.searchString);
   };
 
   $scope.searchUser = (searchText) => {
-    if (searchText.length > 3) {
-      URL = `https://api.github.com/users/${searchText}`;
+    if ($scope.searchString !== searchText) {
+      $scope.page = 1;
+      $scope.users = [];
+      $scope.searchString = searchText;
+    }
+
+    if (searchText) {
+      $scope.loading = true;
+      let URL = `https://api.github.com/search/users?q=${searchText}&page=${$scope.page}&per_page=10`;
       $http
         .get(URL)
         .then((response) => {
-          $scope.users = [response.data];
+          response.data &&
+            response.data.items.forEach((item) => {
+              $scope.users.push(item);
+            });
+          $scope.isDisabled = false;
+          $scope.loading = false;
         })
         .catch((e) => {
+          $scope.loading = false;
           console.log(e);
-          $scope.users = [];
-        });
-    } else if (searchText === "") {
-      URL = "https://api.github.com/users";
-      $http
-        .get(URL)
-        .then((response) => {
-          $scope.users = response.data;
-        })
-        .catch((e) => {
-          console.log(e);
-          $scope.users = [];
         });
     }
   };

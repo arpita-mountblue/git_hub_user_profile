@@ -17,14 +17,11 @@
         class="fas fa-search"
         style="position: relative; right: 50px; color: blueviolet"
       ></i>
-      <br /><br />
-    </div>
-
-    <div ng-if="loading === false">
+      <h3>Please enter the user name</h3>
       <div
         class="allUserContainer"
-        infinite-scroll="scrollFunction()"
-        infinite-scroll-distance="2"
+        infinite-scroll="scrollFunction(page+1)"
+        infinite-scroll-disabled="isDisabled"
       >
         <div ng-repeat="user in users " class="usersDetailContainer">
           <a href="#!/users/{{user.login}}" class="hrefDiv">
@@ -34,14 +31,16 @@
             </div>
           </a>
         </div>
-        <div ng-if="users.length===0">
-          <img class="resultNotFound" src="../Images/no-result-found.webp" />
-        </div>
       </div>
-    </div>
-    <div ng-if="loading === true" class="loading_container">
-      <img src="../Images/loading.gif" class="loading_gif" />
-      <h2>Loading...</h2>
+      <br /><br />
+
+      <div ng-if="loading === false && users.length===0 && searchString ">
+        <img class="resultNotFound" src="../Images/no-result-found.webp" />
+      </div>
+      <div ng-if="loading === true" class="loading_container">
+        <img src="../Images/loading.gif" class="loading_gif" />
+        <h2>Loading...</h2>
+      </div>
     </div>
   </div>
 </div>
